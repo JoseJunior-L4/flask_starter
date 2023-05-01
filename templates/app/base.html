@@ -1,0 +1,275 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<div class="bg-gray-200 min-h-screen pb-24">
+<title>{% block title %}{% endblock %}</title>
+  <header class="px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
+    <div class="flex-1 flex justify-between items-center font-black text-gray-700">
+      <a href="/">LOGO</a>
+    </div>
+
+    <label for="menu-toggle" class="cursor-pointer lg:hidden block">
+     <svg class="fill-current text-gray-600 hover:text-gray-800" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"</path></svg>
+    </label>
+    <input class="hidden" type="checkbox" id="menu-toggle" />
+
+    <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+      <nav>
+        <ul class="lg:flex items-center justify-between text-sm font-medium text-gray-700 pt-4 lg:pt-0">
+          <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent text-gray-600 hover:text-gray-900" href="{{ url_for('dashboard') }}">Dashboard</a></li>
+          <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent text-gray-600 hover:text-gray-900" href="#">Courses</a></li>
+          <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent text-gray-600 hover:text-gray-900" href="#">Users</a></li>
+
+        </ul>
+      </nav>
+      <a href="#" class="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor" id="userdropdown">
+
+      <img class="rounded-full w-10 h-10 border-2 border-transparent hover:border-pink-400 ignore-body-click" src="https://cdn-icons-png.flaticon.com/512/552/552721.png" alt="avatar">
+    </a>
+      <div id="usermenu" class="absolute lg:mt-12 pt-1 z-40 left-0 lg:left-auto lg:right-0 lg:top-0 invisible lg:w-auto w-full">
+        <div class="bg-white shadow-xl lg:px-8 px-6 lg:py-4 pb-4 pt-0 rounded lg:mr-3 rounded-t-none">
+          <a href="/profile" class="pb-2 block text-gray-600 hover:text-gray-900 ignore-body-click"><i class="fa fa-user"></i> Profile</a>
+          <a href="/logout" class="block text-gray-600 hover:text-gray-900 ignore-body-click text-red-600"> <i class="fa fa-sign-out-alt"></i> Logout </a>
+        </div>
+      </div>
+
+    </div>
+
+  </header>
+  <div class="container mx-auto max-w-3xl mt-8">
+{% with messages = get_flashed_messages(with_categories=true) %}
+   {% if messages %}
+    <ul class="flashes">
+      {% for message in messages %}
+
+
+
+          <div class="alert alert--{{ message[0] }} alert--is-visible js-alert" role="alert">
+  <div class="cd-flex cd-items-center cd-justify-between">
+    <div class="cd-flex cd-items-center">
+      <svg class="alert__icon cd-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <g fill="currentColor">
+          <path fill-opacity=".2" d="M12 24a12 12 0 1 0 0-24 12 12 0 1 0 0 24z"></path>
+          <path d="M12 9a1 1 0 0 1 1 1l0 9a1 1 0 0 1-2 0l0-9a1 1 0 0 1 1-1z"></path>
+          <path d="M12 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 1 0 0 3z"></path>
+        </g>
+      </svg>
+
+      <p><strong class="alert__label" style="text-transform: uppercase">{{ message[0] }}:</strong> {{ message[1] }} </p>
+    </div>
+
+    <button class="alert__close-btn js-alert__close-btn">
+      <svg class="cd-icon" viewBox="0 0 16 16">
+        <title>Close alert</title>
+        <g fill="currentColor">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3l10 10"></path>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 3L3 13"></path>
+        </g>
+      </svg>
+    </button>
+  </div>
+</div>
+
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+    {% block content %}{% endblock %}
+
+  </div>
+</div>
+
+
+<style>/* --------------------------------
+
+File#: _1_alert
+Title: Alert
+Descr: Feedback message
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+/* --------------------------------
+
+Icons
+
+-------------------------------- */
+
+.cd-icon {
+  --size: 1em;
+  font-size: var(--size);
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+  color: inherit;
+  fill: currentColor;
+  line-height: 1;
+  flex-shrink: 0;
+  max-width: initial;
+}
+
+.cd-icon use { /* SVG symbols - enable icon color corrections */
+  color: inherit;
+  fill: currentColor;
+}
+
+/* --------------------------------
+
+Component
+
+-------------------------------- */
+
+.alert {
+  background-color: hsla(250, 84%, 54%, 0.2);
+  color: hsl(230, 13%, 9%);
+  border-radius: 0.375em;
+  padding: 1rem;
+  position: absolute;
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  font-size: 0.9375rem;
+}
+
+.alert__icon {
+  --size: 24px;
+  margin-right: 0.5rem;
+  color: hsl(250, 84%, 54%);
+}
+
+.alert__label {
+  font-weight: 700;
+}
+
+.alert__close-btn {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-left: 1.5rem;
+  transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.alert__close-btn .cd-icon {
+  --size: 16px;
+  display: block;
+}
+
+.alert__close-btn:hover {
+  transform: scale(1.1);
+}
+
+.alert--success {
+  background-color: hsla(170, 78%, 36%, 0.2);
+}
+
+.alert--success .alert__icon {
+  color: hsl(170, 78%, 36%);
+}
+
+.alert--error {
+  background-color: hsla(342, 89%, 48%, 0.2);
+}
+
+.alert--error .alert__icon {
+  color: hsl(342, 89%, 48%);
+}
+
+.alert--warning {
+  background-color: hsla(35, 79%, 66%, 0.2);
+}
+
+.alert--warning .alert__icon {
+  color: hsl(35, 79%, 66%);
+}
+
+.alert__list {
+  list-style: disc;
+  list-style-position: inside;
+}
+
+.alert--is-visible {
+  position: static;
+  -webkit-clip-path: none;
+          clip-path: none;
+}
+
+/* --------------------------------
+
+Utilities
+
+-------------------------------- */
+
+.cd-flex {
+  display: flex;
+}
+
+.cd-items-center {
+  align-items: center;
+}
+
+.cd-justify-between {
+  justify-content: space-between;
+}
+
+.cd-margin-top-3xs {
+  margin-top: 0.5rem;
+}
+
+.cd-color-inherit {
+  color: inherit;
+}
+</style>
+
+<script>
+    var userDropDownVisible = false;
+
+ document.body.addEventListener("click", function (e) {
+    if(e.target.id != "usermenu" && !e.target.classList.contains('ignore-body-click') && userDropDownVisible){
+        document.getElementById('usermenu').classList.add('invisible');
+        userDropDownVisible = false;
+    }
+ });
+
+     // File#: _1_alert
+// Usage: codyhouse.co/license
+(function() {
+	var alertClose = document.getElementsByClassName('js-alert__close-btn');
+	if( alertClose.length > 0 ) {
+		for( var i = 0; i < alertClose.length; i++) {
+			(function(i){initAlertEvent(alertClose[i]);})(i);
+		}
+	};
+}());
+
+function initAlertEvent(element) {
+	element.addEventListener('click', function(event){
+		event.preventDefault();
+		element.closest('.js-alert').classList.remove('alert--is-visible');
+	});
+};
+
+
+ document.getElementById('userdropdown').addEventListener('click', function(){
+    if(document.getElementById('usermenu').classList.contains('invisible')){
+        document.getElementById('usermenu').classList.remove('invisible');
+        userDropDownVisible = true;
+    } else {
+        document.getElementById('usermenu').classList.add('invisible');
+        userDropDownVisible = false;
+    }
+ });
+
+// javascript functionality to preview photo file upload
+
+window.loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+        var output = document.getElementById('photo');
+        if (event.target.files[0].type.match('image.*')) {
+            output.src = reader.result;
+        } else {
+            event.target.value = '';
+            alert('please select a valid image');
+        }
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script>

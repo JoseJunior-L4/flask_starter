@@ -1,0 +1,347 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<title>Register - </title>
+<style>
+    *{
+        font-family: 'Poppins', sans-serif;
+    }
+
+</style>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+   {% if messages %}
+    <ul class="flashes">
+      {% for message in messages %}
+
+
+
+          <div class="alert alert--error alert--is-visible js-alert" role="alert">
+  <div class="cd-flex cd-items-center cd-justify-between">
+    <div class="cd-flex cd-items-center">
+      <svg class="alert__icon cd-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <g fill="currentColor">
+          <path fill-opacity=".2" d="M12 24a12 12 0 1 0 0-24 12 12 0 1 0 0 24z"></path>
+          <path d="M12 9a1 1 0 0 1 1 1l0 9a1 1 0 0 1-2 0l0-9a1 1 0 0 1 1-1z"></path>
+          <path d="M12 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 1 0 0 3z"></path>
+        </g>
+      </svg>
+
+      <p><strong class="alert__label">{{ message[0] }}:</strong> {{ message[1] }} </p>
+    </div>
+
+    <button class="alert__close-btn js-alert__close-btn">
+      <svg class="cd-icon" viewBox="0 0 16 16">
+        <title>Close alert</title>
+        <g fill="currentColor">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3l10 10"></path>
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 3L3 13"></path>
+        </g>
+      </svg>
+    </button>
+  </div>
+</div>
+
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<section class="bg-gray-50 min-h-screen flex items-center justify-center">
+  <!-- login container -->
+
+
+<style>/* --------------------------------
+
+File#: _1_alert
+Title: Alert
+Descr: Feedback message
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+/* --------------------------------
+
+Icons
+
+-------------------------------- */
+
+.cd-icon {
+  --size: 1em;
+  font-size: var(--size);
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+  color: inherit;
+  fill: currentColor;
+  line-height: 1;
+  flex-shrink: 0;
+  max-width: initial;
+}
+
+.cd-icon use { /* SVG symbols - enable icon color corrections */
+  color: inherit;
+  fill: currentColor;
+}
+
+/* --------------------------------
+
+Component
+
+-------------------------------- */
+
+.alert {
+  background-color: hsla(250, 84%, 54%, 0.2);
+  color: hsl(230, 13%, 9%);
+  border-radius: 0.375em;
+  padding: 1rem;
+  position: absolute;
+  -webkit-clip-path: inset(50%);
+          clip-path: inset(50%);
+  font-size: 0.9375rem;
+}
+
+.alert__icon {
+  --size: 24px;
+  margin-right: 0.5rem;
+  color: hsl(250, 84%, 54%);
+}
+
+.alert__label {
+  font-weight: 700;
+}
+
+.alert__close-btn {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-left: 1.5rem;
+  transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.alert__close-btn .cd-icon {
+  --size: 16px;
+  display: block;
+}
+
+.alert__close-btn:hover {
+  transform: scale(1.1);
+}
+
+.alert--success {
+  background-color: hsla(170, 78%, 36%, 0.2);
+}
+
+.alert--success .alert__icon {
+  color: hsl(170, 78%, 36%);
+}
+
+.alert--error {
+  background-color: hsla(342, 89%, 48%, 0.2);
+}
+
+.alert--error .alert__icon {
+  color: hsl(342, 89%, 48%);
+}
+
+.alert--warning {
+  background-color: hsla(35, 79%, 66%, 0.2);
+}
+
+.alert--warning .alert__icon {
+  color: hsl(35, 79%, 66%);
+}
+
+.alert__list {
+  list-style: disc;
+  list-style-position: inside;
+}
+
+.alert--is-visible {
+  position: static;
+  -webkit-clip-path: none;
+          clip-path: none;
+}
+
+/* --------------------------------
+
+Utilities
+
+-------------------------------- */
+
+.cd-flex {
+  display: flex;
+}
+
+.cd-items-center {
+  align-items: center;
+}
+
+.cd-justify-between {
+  justify-content: space-between;
+}
+
+.cd-margin-top-3xs {
+  margin-top: 0.5rem;
+}
+
+.cd-color-inherit {
+  color: inherit;
+}
+</style>
+
+
+  <div class="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+    <!-- form -->
+    <div class="md:w-1/2 px-8 md:px-16">
+        {#  LOGO  #}
+    <div class="flex justify-center items-center" style="flex-direction: column">
+        <div class="rounded-full w-40 h-40 overflow-hidden">
+          <img src="https://via.placeholder.com/150" alt="Placeholder image" class="w-full h-full object-cover">
+        </div>
+
+    </div>
+        <br>
+
+
+
+      <form method="post" class="flex flex-col gap-4">
+          <input class="p-2 rounded-xl border" type="text" name="username" placeholder="Username" required>
+          <input class="p-2 rounded-xl border" type="email" name="email" placeholder="Email" required>
+
+        <div class="relative">
+          <input class="p-2 rounded-xl border w-full" type="password" name="password" placeholder="Password" required>
+
+             <button id="toggle-password" type="button" class="bg-white border rounded-xl">
+                    <i id="toggle-ui" class="fa-regular text-gray-500 fa-eye absolute top-1/2 right-3 -translate-y-1/2"></i>
+             </button>
+        </div>
+
+        <div class="relative">
+          <input class="p-2 rounded-xl border w-full" type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+             <button id="toggle-password" type="button" class="bg-white border rounded-xl">
+                    <i id="toggle-ui" class="fa-regular text-gray-500 fa-eye absolute top-1/2 right-3 -translate-y-1/2"></i>
+             </button>
+        </div>
+
+        <button class="bg-indigo-500 rounded-xl text-white py-2 hover:scale-105 duration-300">Register</button>
+      </form>
+
+
+
+
+
+      <div class="mt-3 text-xs flex justify-between items-center text-indigo-500">
+        <p>Already have an account?</p>
+        <a href="{{ url_for('login') }}" class="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">Login</a>
+      </div>
+    </div>
+
+    <!-- image -->
+    <div class="md:block hidden w-1/2">
+      <img class="rounded-2xl" src="https://images.unsplash.com/photo-1616606103915-dea7be788566?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80">
+    </div>
+  </div>
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script>
+
+        // File#: _1_alert
+// Usage: codyhouse.co/license
+(function() {
+	var alertClose = document.getElementsByClassName('js-alert__close-btn');
+	if( alertClose.length > 0 ) {
+		for( var i = 0; i < alertClose.length; i++) {
+			(function(i){initAlertEvent(alertClose[i]);})(i);
+		}
+	};
+}());
+
+function initAlertEvent(element) {
+	element.addEventListener('click', function(event){
+		event.preventDefault();
+		element.closest('.js-alert').classList.remove('alert--is-visible');
+	});
+};
+
+// select the form and inputs
+const form = document.querySelector('form');
+const usernameInput = document.querySelector('input[name="username"]');
+const emailInput = document.querySelector('input[name="email"]');
+const passwordInput = document.querySelector('input[name="password"]');
+const confirmPasswordInput = document.querySelector('input[name="confirm_password"]');
+
+// add event listener to the form submit
+form.addEventListener('submit', (event) => {
+  // prevent the default form submission
+  event.preventDefault();
+
+  // initialize error messages array
+  const errors = [];
+
+  // check if the username is empty
+  if (!usernameInput.value.trim()) {
+    errors.push('Por favor, preencha o nome de usuário');
+  }
+
+  // check if the email is empty or invalid
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailInput.value.trim()) {
+    errors.push('Por favor, preencha o endereço de e-mail');
+  } else if (!emailRegex.test(emailInput.value)) {
+    errors.push('Por favor, preencha um endereço de e-mail válido');
+  }
+
+  // check if the password is empty or too short
+  if (!passwordInput.value) {
+    errors.push('Por favor, preencha a senha');
+  } else if (passwordInput.value.length < 6) {
+    errors.push('A senha deve ter pelo menos 6 caracteres');
+  }
+
+  // check if the password confirmation matches the password
+  if (confirmPasswordInput.value !== passwordInput.value) {
+    errors.push('As senhas não correspondem');
+  }
+
+  // if there are errors, display them as alerts
+  if (errors.length > 0) {
+      swal({
+          title: "Erro detectado!",
+          text:   errors.join('\n'),
+          icon:  "error",
+        });
+
+
+  } else {
+    // submit the form
+    form.submit();
+  }
+});
+
+// toggle password visibility
+const togglePassword = document.getElementById('toggle-password');
+togglePassword.addEventListener('click', () => {
+  const passwordFieldType = passwordInput.getAttribute('type');
+  const confirmPasswordFieldType = confirmPasswordInput.getAttribute('type');
+  if (passwordFieldType === 'password') {
+    passwordInput.setAttribute('type', 'text');
+    togglePassword.innerHTML = '<i id="toggle-ui" class="fa-regular text-gray-500 fa-eye-slash absolute top-1/2 right-3 -translate-y-1/2"></i>';
+  } else {
+    passwordInput.setAttribute('type', 'password');
+    togglePassword.innerHTML = '<i id="toggle-ui" class="fa-regular text-gray-500 fa-eye absolute top-1/2 right-3 -translate-y-1/2"></i>';
+  }
+  if (confirmPasswordFieldType === 'password') {
+    confirmPasswordInput.setAttribute('type', 'text');
+    togglePassword.innerHTML = '<i id="toggle-ui" class="fa-regular text-gray-500 fa-eye-slash absolute top-1/2 right-3 -translate-y-1/2"></i>';
+  } else {
+    confirmPasswordInput.setAttribute('type', 'password');
+    togglePassword.innerHTML = '<i id="toggle-ui" class="fa-regular text-gray-500 fa-eye absolute top-1/2 right-3 -translate-y-1/2"></i>';
+  }
+});
+
+
+    </script>
+
+</section>
