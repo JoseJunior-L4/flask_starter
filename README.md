@@ -9,7 +9,8 @@ To get started with the Flask Starter Project, follow these steps:
 1. Clone the repository to your local machine.
 2. Create a virtual environment for the project using your preferred method.
 3. Activate the virtual environment.
-4. Run the application using `flask run`.
+4. Install the required dependencies using pip install -r requirements.txt
+5. Run the application using `flask run`.
 
 ## Features
 
