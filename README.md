@@ -12,6 +12,14 @@ To get started with the Flask Starter Project, follow these steps:
 4. Install the required dependencies using `pip install -r requirements.txt`
 5. Run the application using `flask run`.
 
+### Steps
+`python -m venv env`
+`env\Scripts\activate`
+`pip install -r requirements.txt`
+`set FLASK_APP=app.py`
+`set FLASK_ENV=development`
+`flask run`
+
 ## Features
 
 The Flask Starter Project comes with the following features:
